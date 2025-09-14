@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { act } from "react";
+// import { act } from "react";
 
 const counterSlice = createSlice({
   name: 'counter',
   initialState: {
     value: 0,
     step: 1,
+    recent: [1,2,5,10],
   },
   reducers: {
     increse: (state)=>{
@@ -20,8 +21,17 @@ const counterSlice = createSlice({
     setStep: (state, action)=>{
       state.step = action.payload;
     },
+    setRecent: (state)=>{
+      state.recent.push(state.value)
+    },
+    deleteRecent: (state)=>{
+      state.recent=[];
+    },
+    pickRecent: (state, action)=>{
+      state.value = action.payload;
+    },
   },
 });
 
-export const {increse, decrease, reset, setStep} = counterSlice.actions;
+export const {increse, decrease, reset, setStep,setRecent,deleteRecent,pickRecent} = counterSlice.actions;
 export default counterSlice.reducer;

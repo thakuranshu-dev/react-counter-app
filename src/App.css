@@ -16,7 +16,13 @@
   justify-content: center;
   gap: 10px;
 }
-
 .read-the-docs {
   color: #888;
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.clear-btn{
+  margin-left: 10px;
 }

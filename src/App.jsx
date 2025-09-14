@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { increse, decrease, reset, setStep } from './store/counterSlice';
+import { increse, decrease, reset, setStep, pickRecent, setRecent, deleteRecent } from './store/counterSlice';
 import { toggleTheme } from './store/themeSlice';
 
 function App() {
@@ -14,12 +14,16 @@ function App() {
   const count = useSelector((state)=> state.counter.value);
   const step = useSelector((state)=> state.counter.step);
   const theme = useSelector((state)=> state.theme.mode);
+  const history = useSelector((state)=> state.counter.recent);
   const dispatch = useDispatch();
 
   useEffect(()=>{
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   },[theme])
+  useEffect(()=>{
+    dispatch(setRecent(count))
+  },[count])
 
   return (
     <>
@@ -31,6 +35,22 @@ function App() {
       >{theme}</button>
 
       <h2>Counter: {count}</h2>
+      <select name="history" id="history"
+      value={history[history.length-1]}
+      onChange={(e)=>dispatch(pickRecent(parseInt(e.target.value)))}
+      >
+        {Array.isArray(history) && history.length > 0 ?
+          history.map((recent, idx)=>(
+            <option value={recent}>{recent}</option>
+          )) :
+          <option value="0">0</option> 
+        }
+      </select>
+
+      <button type="button"
+      onClick={()=>dispatch(deleteRecent())}
+      className='clear-btn'
+      >Clear</button>
 
       <div className="card">
         <button onClick={() => dispatch(increse())}>
@@ -53,7 +73,7 @@ function App() {
         
       </div>
       <p className="read-the-docs">
-        Made with 🧡
+        Made with 🧡 by Anshu Kumar Thakur
       </p>
     </>
   )

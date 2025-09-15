@@ -26,3 +26,35 @@
 .clear-btn{
   margin-left: 10px;
 }
+.historyCard{
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  width: 320px;
+  margin: 0 auto;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px #888;
+}
+.history-title{
+  height:25px;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 2.5rem;
+}
+.clear-history-btn{
+  height: 25px;
+  font-size: 12px;
+  padding: 0.2em 0.6em;
+}
+.recent-list{
+  overflow-y: scroll;
+  
+}
+.recent-val{
+  cursor: pointer;
+  text-align: start;
+  padding-inline-start: 10px;
+  line-height: 0.7em;
+}

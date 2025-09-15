@@ -10,6 +10,8 @@ function App() {
    localStorage.getItem("theme") || "dark"
   )
   const [counter, setCounter] = useState(1); */
+
+  //TODO: create a modal/card to show history
   
   const count = useSelector((state)=> state.counter.value);
   const step = useSelector((state)=> state.counter.step);
@@ -35,7 +37,7 @@ function App() {
       >{theme}</button>
 
       <h2>Counter: {count}</h2>
-      <select name="history" id="history"
+      {/* <select name="history" id="history"
       value={history[history.length-1]}
       onChange={(e)=>dispatch(pickRecent(parseInt(e.target.value)))}
       >
@@ -50,7 +52,7 @@ function App() {
       <button type="button"
       onClick={()=>dispatch(deleteRecent())}
       className='clear-btn'
-      >Clear</button>
+      >Clear</button> */}
 
       <div className="card">
         <button onClick={() => dispatch(increse())}>
@@ -69,9 +71,27 @@ function App() {
           <option value="5">+5</option>
           <option value="10">+10</option>
         </select>
-
-        
       </div>
+
+      <div className="historyCard">
+        <div className="history-title">
+          <h4>Hstory</h4>
+          <button type="button"
+          className='clear-history-btn'>Clear</button>
+        </div>
+        <div className="recent-list">
+        {
+          Array.isArray(history) && history.length > 0 ?
+            history.map((val, idx)=>(
+              <p className='recent-val' key={idx}
+              onClick={(e)=>dispatch(pickRecent(val))}
+              >{idx + 1}: {val}</p>
+            ) ) :
+            <p>No history...</p>
+        }
+        </div>
+      </div>
+
       <p className="read-the-docs">
         Made with 🧡 by Anshu Kumar Thakur
       </p>

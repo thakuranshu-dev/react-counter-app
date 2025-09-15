@@ -1,12 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { act } from "react";
 
 const counterSlice = createSlice({
   name: 'counter',
   initialState: {
     value: 0,
     step: 1,
-    recent: [1,2,5,10],
+    recent: [],
   },
   reducers: {
     increse: (state)=>{

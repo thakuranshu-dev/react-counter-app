@@ -27,7 +27,7 @@ function App() {
 
   return (
     <>
-      <h1>Vite + React | Counter App</h1>
+      <h1>React-Redux | Counter App</h1>
 
       <button type="button"
       className='theme-btn'

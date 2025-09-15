@@ -34,7 +34,13 @@ function App() {
       <button type="button"
       className='theme-btn'
       onClick={()=>  dispatch(toggleTheme())}
-      >{theme}</button>
+      style={theme==='light'?{justifyContent: "start"}: {justifyContent:"end"}}
+      >{theme === 'dark' ?
+        <img src="https://img.icons8.com/?size=100&id=nNtT9r4dDsaU&format=png&color=000000" alt="Dark mode" />:
+          <img src="https://img.icons8.com/?size=100&id=15352&format=png&color=000000" alt="Light mode"/> 
+      }
+      
+      </button>
 
       <h2>Counter: {count}</h2>
       {/* <select name="history" id="history"
